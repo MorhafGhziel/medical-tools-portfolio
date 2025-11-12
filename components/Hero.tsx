@@ -63,26 +63,6 @@ export function Hero() {
               {t.hero.subtitle}
             </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-            >
-              <Button
-                size="lg"
-                onClick={scrollToProducts}
-                className="group text-lg px-8 py-7 cursor-pointer"
-              >
-                {t.hero.cta}
-                {lang === "en" && (
-                  <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
-                )}
-                {lang === "ar" && (
-                  <ArrowLeft className="w-5 h-5 mr-4 group-hover:-translate-x-1 transition-transform" />
-                )}
-              </Button>
-            </motion.div>
-
             {/* Features */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -103,14 +83,36 @@ export function Hero() {
                 </motion.div>
               ))}
             </motion.div>
+
+            {/* Button - At bottom on all screen sizes */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="pt-8"
+            >
+              <Button
+                size="lg"
+                onClick={scrollToProducts}
+                className="group text-lg px-8 py-7 cursor-pointer w-full lg:w-auto"
+              >
+                {t.hero.cta}
+                {lang === "en" && (
+                  <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
+                )}
+                {lang === "ar" && (
+                  <ArrowLeft className="w-5 h-5 mr-4 group-hover:-translate-x-1 transition-transform" />
+                )}
+              </Button>
+            </motion.div>
           </motion.div>
 
-          {/* Right Image */}
+          {/* Right Image - Hidden on small screens */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative"
+            className="relative hidden lg:block"
           >
             <div className="relative aspect-square rounded-3xl overflow-hidden border-2 border-slate-700 shadow-2xl shadow-blue-900/20">
               <Image

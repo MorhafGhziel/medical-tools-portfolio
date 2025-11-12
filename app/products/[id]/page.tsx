@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
@@ -26,6 +27,10 @@ export default function ProductPage() {
   const productId = parseInt(params.id as string);
   const product = getProductById(productId);
   const relatedProducts = getRelatedProducts(productId, 3);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [productId]);
 
   if (!product) {
     return (
