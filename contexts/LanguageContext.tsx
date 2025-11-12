@@ -7,7 +7,7 @@ import { Language, translations } from "@/lib/data/translations"
 interface LanguageContextType {
   lang: Language
   setLang: (lang: Language) => void
-  t: typeof translations.ar
+  t: (typeof translations)[Language]
   isTransitioning: boolean
 }
 
@@ -34,7 +34,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       value={{
         lang,
         setLang: handleSetLang,
-        t: translations[lang],
+        t: translations[lang] as (typeof translations)[Language],
         isTransitioning,
       }}
     >
