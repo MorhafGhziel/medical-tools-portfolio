@@ -10,7 +10,7 @@ export default function Home() {
   const { lang } = useLanguage()
   
   return (
-    <div className={`min-h-screen bg-slate-900 ${lang === "ar" ? "rtl" : "ltr"}`} dir={lang === "ar" ? "rtl" : "ltr"}>
+    <div className={`min-h-screen bg-[#0a0e27] ${lang === "ar" ? "rtl" : "ltr"}`} dir={lang === "ar" ? "rtl" : "ltr"}>
       <Header />
       <Hero />
       <ProductsGrid />

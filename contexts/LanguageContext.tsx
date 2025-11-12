@@ -46,7 +46,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-slate-900 z-[9999] pointer-events-none"
+            className="fixed inset-0 bg-[#0a0e27] z-[9999] pointer-events-none"
           />
         )}
       </AnimatePresence>

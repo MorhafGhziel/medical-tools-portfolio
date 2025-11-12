@@ -2,7 +2,7 @@ export const translations = {
   ar: {
     hero: {
       title: "د. أحمد غزيل",
-      subtitle: "استشاري وبائع أدوات طبية متخصصة",
+      subtitle: "دكتور وبائع أدوات طبية متخصصة",
       cta: "تصفح المنتجات",
     },
     products: {
@@ -27,6 +27,8 @@ export const translations = {
       description: "الوصف",
       specifications: "المواصفات",
       related: "منتجات مشابهة",
+      downloadCatalog: "تحميل الكتالوج",
+      contactForPrice: "تواصل للاستفسار عن السعر",
     },
   },
   en: {
@@ -57,6 +59,8 @@ export const translations = {
       description: "Description",
       specifications: "Specifications",
       related: "Related Products",
+      downloadCatalog: "Download Catalog",
+      contactForPrice: "Contact for Price",
     },
   },
 } as const

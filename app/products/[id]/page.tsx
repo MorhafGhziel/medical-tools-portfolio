@@ -10,6 +10,7 @@ import {
   Package,
   Shield,
   Truck,
+  Download,
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -34,7 +35,7 @@ export default function ProductPage() {
 
   if (!product) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-900">
+      <div className="min-h-screen flex items-center justify-center bg-[#0a0e27]">
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold text-white">
             {lang === "ar" ? "المنتج غير موجود" : "Product Not Found"}
@@ -76,12 +77,12 @@ export default function ProductPage() {
 
   return (
     <div
-      className={`min-h-screen bg-slate-900 ${lang === "ar" ? "rtl" : "ltr"}`}
+      className={`min-h-screen bg-[#0a0e27] ${lang === "ar" ? "rtl" : "ltr"}`}
       dir={lang === "ar" ? "rtl" : "ltr"}
     >
       <Header />
 
-      <main className="pt-24 pb-20 px-6">
+      <main className="pt-24 pb-16 px-6">
         <div className="container mx-auto max-w-7xl">
           {/* Product Details */}
           <div className="grid lg:grid-cols-2 gap-12 mb-24">
@@ -105,17 +106,25 @@ export default function ProductPage() {
               className="space-y-6"
             >
               <div>
-                <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white leading-tight">
+                <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white leading-tight tracking-tight">
                   {product.name[lang]}
                 </h1>
-                <div className="flex items-baseline gap-3 mb-8">
-                  <span className="text-6xl font-bold text-white">
-                    {product.price}
-                  </span>
-                  <span className="text-2xl text-slate-400">
-                    {t.products.currency}
-                  </span>
-                </div>
+                {product.price > 0 ? (
+                  <div className="flex items-baseline gap-3 mb-8">
+                    <span className="text-6xl font-bold text-white">
+                      {product.price}
+                    </span>
+                    <span className="text-2xl text-white/60">
+                      {t.products.currency}
+                    </span>
+                  </div>
+                ) : (
+                  <div className="mb-8">
+                    <span className="text-2xl md:text-3xl font-bold text-white">
+                      {t.product.contactForPrice}
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* Features */}
@@ -126,10 +135,13 @@ export default function ProductPage() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.4 + index * 0.1 }}
-                    className="flex items-center gap-2 px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl"
+                    whileHover={{ scale: 1.05 }}
+                    className="flex items-center gap-2.5 px-5 py-3 bg-white/5 border border-white/10 rounded-lg hover:border-white/20 hover:bg-white/10 transition-all"
                   >
-                    <feature.icon className="w-5 h-5 text-blue-400" />
-                    <span className="text-sm text-white font-medium">
+                    <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
+                      <feature.icon className="w-4 h-4 text-white" />
+                    </div>
+                    <span className="text-sm font-semibold text-white">
                       {feature.label}
                     </span>
                   </motion.div>
@@ -137,15 +149,15 @@ export default function ProductPage() {
               </div>
 
               {product.description && (
-                <Card className="bg-slate-800 border-slate-700">
+                <Card className="bg-white/5 border-white/10">
                   <CardHeader>
                     <CardTitle className="text-white flex items-center gap-2">
-                      <Package className="w-6 h-6 text-blue-400" />
+                      <Package className="w-6 h-6 text-white" />
                       {t.product.description}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-slate-300 leading-relaxed text-lg">
+                    <p className="text-white/80 leading-relaxed text-lg">
                       {product.description[lang]}
                     </p>
                   </CardContent>
@@ -153,10 +165,10 @@ export default function ProductPage() {
               )}
 
               {product.specifications && (
-                <Card className="bg-slate-800 border-slate-700">
+                <Card className="bg-white/5 border-white/10">
                   <CardHeader>
                     <CardTitle className="text-white flex items-center gap-2">
-                      <CheckCircle className="w-6 h-6 text-blue-400" />
+                      <CheckCircle className="w-6 h-6 text-white" />
                       {t.product.specifications}
                     </CardTitle>
                   </CardHeader>
@@ -171,8 +183,8 @@ export default function ProductPage() {
                           transition={{ delay: index * 0.1 }}
                           className="flex items-start gap-3"
                         >
-                          <div className="w-6 h-6 rounded-full bg-blue-600/20 flex items-center justify-center shrink-0 mt-0.5">
-                            <CheckCircle className="w-4 h-4 text-blue-400" />
+                          <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                            <CheckCircle className="w-4 h-4 text-white" />
                           </div>
                           <span className="text-white">{spec}</span>
                         </motion.li>
@@ -182,26 +194,51 @@ export default function ProductPage() {
                 </Card>
               )}
 
+              {product.catalog && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="w-full text-base md:text-lg px-6 md:px-8 py-5 md:py-6 font-semibold cursor-pointer bg-white/5 border border-white/20 text-white hover:bg-white/10 hover:border-white/30 hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 rounded-lg"
+                    onClick={() => window.open(product.catalog, "_blank")}
+                  >
+                    {lang === "ar" ? (
+                      <>
+                        {t.product.downloadCatalog}
+                        <Download className="w-5 h-5 mr-3" />
+                      </>
+                    ) : (
+                      <>
+                        <Download className="w-5 h-5 mr-3" />
+                        {t.product.downloadCatalog}
+                      </>
+                    )}
+                  </Button>
+                </motion.div>
+              )}
+
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
               >
                 <Button
                   size="lg"
-                  className="w-full text-xl px-8 py-8 font-bold cursor-pointer"
+                  className="w-full text-base md:text-lg px-6 md:px-8 py-4 md:py-5 font-bold cursor-pointer bg-white text-[#0a0e27] hover:bg-white/90 hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 rounded-lg shadow-lg hover:shadow-xl"
                   onClick={handleWhatsAppOrder}
                 >
                   {lang === "ar" ? (
                     <>
                       {t.product.order}
-                      <MessageCircle className="w-7 h-7 mr-4" />
+                      <MessageCircle className="w-5 h-5 md:w-6 md:h-6 mr-3 md:mr-4" />
                     </>
                   ) : (
                     <>
-                      <MessageCircle className="w-7 h-7 mr-3" />
+                      <MessageCircle className="w-5 h-5 md:w-6 md:h-6 mr-3" />
                       {t.product.order}
                     </>
                   )}
@@ -232,8 +269,8 @@ export default function ProductPage() {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
                     <Link href={`/products/${relatedProduct.id}`}>
-                      <Card className="group cursor-pointer bg-slate-800 border-slate-700 hover:border-blue-600 transition-all duration-300 overflow-hidden hover:shadow-2xl hover:shadow-blue-900/20 hover:-translate-y-2">
-                        <div className="relative aspect-square overflow-hidden bg-slate-700">
+                      <Card className="group cursor-pointer bg-white/5 border-white/10 hover:border-white/30 hover:bg-white/10 transition-all duration-300 overflow-hidden">
+                        <div className="relative aspect-square overflow-hidden bg-white/5">
                           <Image
                             src={relatedProduct.image || "/placeholder.svg"}
                             alt={relatedProduct.name[lang]}
@@ -251,7 +288,7 @@ export default function ProductPage() {
                             <span className="text-3xl font-bold text-white">
                               {relatedProduct.price}
                             </span>
-                            <span className="text-lg text-slate-400">
+                            <span className="text-lg text-white/60">
                               {t.products.currency}
                             </span>
                           </div>
