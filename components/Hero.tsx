@@ -61,14 +61,18 @@ export function Hero() {
             </motion.h1>
 
             {/* Subtitle */}
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-xl md:text-2xl text-white/80 leading-relaxed"
+              className="text-xl md:text-2xl text-white/80 leading-relaxed space-y-2"
             >
-              {t.hero.subtitle}
-            </motion.p>
+              {t.hero.subtitle.split('\n').map((line, index) => (
+                <div key={index} className="tracking-wider">
+                  {line}
+                </div>
+              ))}
+            </motion.div>
 
             {/* Features */}
             <motion.div

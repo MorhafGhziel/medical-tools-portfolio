@@ -2,7 +2,7 @@ export const translations = {
   ar: {
     hero: {
       title: "د. أحمد غزيل",
-      subtitle: "دكتور وبائع أدوات طبية متخصصة",
+      subtitle: "طبيب أسنان BDS\nأخصائي تجميل الأسنان",
       cta: "تصفح المنتجات",
     },
     products: {
@@ -34,7 +34,7 @@ export const translations = {
   en: {
     hero: {
       title: "Dr. Ahmed Ghziel",
-      subtitle: "Consultant & Specialized Medical Tools Provider",
+      subtitle: "Dentist BDS\nDental Cosmetic Specialist",
       cta: "Browse Products",
     },
     products: {

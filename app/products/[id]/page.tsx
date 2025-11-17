@@ -284,14 +284,22 @@ export default function ProductPage() {
                           <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-2">
                             {relatedProduct.name[lang]}
                           </h3>
-                          <div className="flex items-baseline gap-2">
-                            <span className="text-3xl font-bold text-white">
-                              {relatedProduct.price}
-                            </span>
-                            <span className="text-lg text-white/60">
-                              {t.products.currency}
-                            </span>
-                          </div>
+                          {relatedProduct.price > 0 ? (
+                            <div className="flex items-baseline gap-2">
+                              <span className="text-3xl font-bold text-white">
+                                {relatedProduct.price}
+                              </span>
+                              <span className="text-lg text-white/60">
+                                {t.products.currency}
+                              </span>
+                            </div>
+                          ) : (
+                            <div>
+                              <span className="text-lg font-semibold text-white/80">
+                                {t.product.contactForPrice}
+                              </span>
+                            </div>
+                          )}
                         </div>
                       </Card>
                     </Link>

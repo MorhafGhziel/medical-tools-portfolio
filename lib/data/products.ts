@@ -103,6 +103,38 @@ export const products: Product[] = [
     },
     catalog: "/product-3/Green-Bone.pdf",
   },
+  {
+    id: 4,
+    name: { ar: "سيرجيك تاتش", en: "Surgic Touch" },
+    price: 18000,
+    image: "/product-4/surgic_touch-1.jpeg",
+    images: ["/product-4/surgic_touch-1.jpeg", "/product-4/surgic_touch-2.jpeg"],
+    description: {
+      ar: "جهاز SURGIC TOUCH من وودبيكر — جيل متطور لعمليات الجراحة الدقيقة في زراعة الأسنان. يتميز بقطع ميكروني بارد دون إيذاء الأنسجة الرخوة، مع تبريد مائي متقدم وشاشة لمس حديثة تجعل التحكم أسهل وأكثر دقة. مثالي لرفع الجيب الأنفي، تقسيم العظم، وتجهيز مواقع الزرعات.",
+      en: "SURGIC TOUCH device from Woodpecker — an advanced generation for precision surgery in dental implants. Features cold micron cutting without harming soft tissues, with advanced water cooling and a modern touch screen that makes control easier and more precise. Ideal for sinus lift, bone splitting, and implant site preparation.",
+    },
+    specifications: {
+      ar: [
+        "قص فائق الدقة بتقنية Ultrasurgery",
+        "انتقائية كاملة في القطع دون التأثير على الأنسجة الرخوة",
+        "نظام تبريد مائي يحافظ على رؤية واضحة وحرارة منخفضة",
+        "شاشة لمس 7 إنش للتحكم السريع",
+        "مقبض قابل للتعقيم مع إضاءة LED",
+        "جاهز للاستخدام ومرفق بمجموعة رؤوس متعددة للتخصصات",
+        "مناسب للاستخراج، رفع الجيب، وتجهيز الزرعات",
+      ],
+      en: [
+        "Ultra-precision cutting with Ultrasurgery technology",
+        "Complete selectivity in cutting without affecting soft tissues",
+        "Water cooling system maintains clear vision and low temperature",
+        "7-inch touch screen for quick control",
+        "Sterilizable handle with LED lighting",
+        "Ready to use with multiple heads for specialties",
+        "Suitable for extraction, sinus lift, and implant preparation",
+      ],
+    },
+    catalog: "/product-4/Surgic_Touch.pdf",
+  },
 ]
 
 export function getProductById(id: number): Product | undefined {
